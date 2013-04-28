@@ -27,5 +27,13 @@ R = focalLength1/focalLength2;
 [R1,rowMax1,colMax1] = harrisCorners(pathToImg1, 6, somethingHere, 10);
 [R2,rowMax2,colMax2] = harrisCorners(pathToImg2, 6, somethingHere, 10);
 
-%calculate homogrephy
+%calculate homography matrix using using homography_solve func
 %http://www.mathworks.com/matlabcentral/answers/26141
+
+%generate H' with homography_transform func
+
+
+%Jacobian built in matlab function jacobian(f,v)
+%http://math.stackexchange.com/questions/14952/what-is-jacobian-matrix
+
+%http://people.duke.edu/~hpgavin/ce281/lm.pdf Explains Levenberg-Marquardt
