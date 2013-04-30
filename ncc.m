@@ -1,6 +1,9 @@
 function disparityMap = ncc( I1,I2, windowSize )
-%ncc Returns the disparity mapping of two images
-%   I1,I2 are grayscale images   
+%%ncc Returns the disparity mapping of two images via Normalized Cross
+%   Correlation
+%   I1,I2 are grayscale images
+%   windowSize is the size of the window we are convolving for NCC
+%
 %
 
 [I1r,I1c] = size(I1);
