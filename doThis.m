@@ -39,6 +39,8 @@ R = focalLength1/focalLength2;
 %and make it better
 %http://research.microsoft.com/en-us/um/people/cloop/ZhangLoopCVIU-01.pdf
 
+%some comments on 8 point ive found. 
+
 %calculate homography matrix using using homography_solve func
 %http://www.mathworks.com/matlabcentral/answers/26141
 
