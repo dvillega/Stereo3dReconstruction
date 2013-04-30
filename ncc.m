@@ -1,4 +1,4 @@
-function disparityMap = ncc( I1,I2, windowSize )
+function disparityMap = ncc( I1,I2, windowSize, dispMax)
 %%ncc Returns the disparity mapping of two images via Normalized Cross
 %   Correlation
 %   I1,I2 are grayscale images
@@ -8,6 +8,10 @@ function disparityMap = ncc( I1,I2, windowSize )
 
 [I1r,I1c] = size(I1);
 [I2r,I2c] = size(I2);
+
+if nargin==3
+    dispMax = 16;
+end
 
 if(I1r~=I2r) && (I1c ~= I2c)
     error('Left and right images are not the same size')
@@ -20,7 +24,7 @@ end
 disparityMap = zeros(I1r,I2c);
 
 win = (windowSize-1)/2;
-dispMin = 0; dispMax = 16;
+dispMin = 0;
 
 for i = (1+win:1:I1r-win)
     for j = (1+win:1:I1c-win-dispMax)

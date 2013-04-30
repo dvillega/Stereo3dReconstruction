@@ -1,4 +1,4 @@
-function disparityMap = ssd( I1, I2, windowSize)
+function disparityMap = ssd( I1, I2, windowSize, dispMax)
 %%ssd Returns the disparity mapping of two images via Sum of Squared
 %   Differences
 %   I1, I2 are grayscale images
@@ -19,7 +19,11 @@ end
 disparityMap = zeros(I1r,I1c);
 
 win = (windowSize-1) / 2;
-dispMin = 0; dispMax = 16;
+dispMin = 0; 
+
+if nargin == 3
+    dispMax = 15;
+end
 
 for i = (1+win:1:I1r-win)
     for j = (1+win:1:I1c-win-dispMax)
