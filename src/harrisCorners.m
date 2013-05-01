@@ -1,4 +1,4 @@
-function [R,rowMax,colMax] = harrisCorners(path2img,gaussRad,responseFunc,varargin)
+function [R,rowMax,colMax] = harrisCorners(img,gaussRad,responseFunc,varargin)
 % harrisCorners - calculate harris corners of an image
 %   Takes the path to the image, radius of the gaussian window, as well as the
 %   function to utilize in the Harris response
@@ -15,7 +15,7 @@ end
 % Passing the radius of the Gaussian Window - 
 gaussSize = gaussRad*2 + 1;
 
-img = rgb2gray(im2double(imread(path2img)));
+% img = rgb2gray(im2double(imread(path2img)));
 [M,N] = size(img);
 
 % Blur the image with appropriate sized gaussian - also blurring values of

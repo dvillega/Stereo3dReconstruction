@@ -19,5 +19,6 @@ for s = 1:size(b,3)
         end
     end
 end
+S = uint8(S);
 end
 
