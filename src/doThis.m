@@ -1,3 +1,6 @@
+% Add the src and all directories under it to the path
+addpath(genpath('.'));
+
 pathToImg1 = ' .JPG';
 pathToImg2 = ' .JPG';
 
