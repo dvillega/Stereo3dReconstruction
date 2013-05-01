@@ -9,9 +9,6 @@ imgS = imread(imgPathS);
 exif1 = imfinfo(imgPathD);
 exif2 = imfinfo(imgPathS);
 
-[x1 y1 z1] = size(imgD);
-[x2 y2 z2] = size(imgS);
-
 %get focal length camera used for pictures 
 focalLengthD = exif1.DigitalCamera.FocalLength;
 focalLengthS = exif2.DigitalCamera.FocalLength;
