@@ -1,4 +1,4 @@
-function [ fixedImg1, fixedImg2 ] = zeroPadImg( img1,img2 )
+function [ fixedImg1, fixedImg2, rOff,cOff ] = zeroPadImg( img1,img2 )
 %take two images, zero pad the smaller picture so they both have the same
 %width and hight
 
@@ -17,5 +17,8 @@ else
     fixedImg1 = insertMatrix(temp,img1);
     fixedImg2 = img2;
 end
+
+rOff = abs(floor(nRows/2));
+cOff = abs(floor(nCols/2));
 end
 

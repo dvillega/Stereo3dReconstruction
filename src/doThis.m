@@ -1,34 +1,55 @@
 % Add the src and all directories under it to the path
 addpath(genpath('.'));
 
-pathToImg1 = ' .JPG';
-pathToImg2 = ' .JPG';
+pathToImg1 = '../testImages/corner1.JPG';
+pathToImg2 = '../testImages/corner2.JPG';
+% 
+% Img1 = imread(pathToImg1);
+% Img2 = imread(pathToImg2);
+% 
+% %get the exif data from the pictures
+% exif1 = imfinfo(pathToImg1);
+% exif2 = imfinfo(pathToImg2);
+% 
+% [x1 y1 z1] = size(Img1);
+% [x2 y2 z2] = size(Img2);
+% 
+% %get focal length camera used for pictures 
+% focalLength1 = exif1.DigitalCamera.FocalLength;
+% focalLength2 = exif2.DigitalCamera.FocalLength;
+% 
+% %calculate the focal ratio R
+% R = focalLength1/focalLength2;
 
-Img1 = imread(pathToImg1);
-Img2 = imread(pathToImg2);
+[R,img1,img2] = focalFix(pathToImg1,pathToImg2);
 
-%get the exif data from the pictures
-exif1 = imfinfo(pathToImg1);
-exif2 = imfinfo(pathToImg2);
-
-[x1 y1 z1] = size(Img1);
-[x2 y2 z2] = size(Img2);
-
-%get focal length camera used for pictures 
-focalLength1 = exif1.DigitalCamera.FocalLength;
-focalLength2 = exif2.DigitalCamera.FocalLength;
-
-%calculate the focal ratio R
-R = focalLength1/focalLength2;
+gray1 = rgb2gray(img1); gray2 = rgb2gray(img2);
 
 %our shit has the same focal length right now so moving on
 
 %then zero pad here to make the images the same
-
+response = @(x) det(x)/trace(x);
 %run Harris corner detection here
 %[R,rowMax,colMax] = harrisCorners(path2img,gaussRad,responseFunc,varargin)
-[R1,rowMax1,colMax1] = harrisCorners(pathToImg1, 6, somethingHere, 10);
-[R2,rowMax2,colMax2] = harrisCorners(pathToImg2, 6, somethingHere, 10);
+%[R1,rowMax1,colMax1] = harrisCorners(img1, 5, response, 100);
+%[R2,rowMax2,colMax2] = harrisCorners(img2, 5, response, 100);
+
+R1 = SIFT(gray1);
+R2 = SIFT(gray2);
+
+[im1ptsx im1ptsy] = ind2sub(size(img1),find(R1));
+[im2ptsx im2ptsy] = ind2sub(size(img2),find(R2));
+[fim1,fim2,rOff,cOff] = zeroPadImg(img1,img2);
+pts1 = [im1ptsx+rOff im1ptsy+cOff]'; pts2 = [im2ptsx im2ptsy]';
+
+
+
+im_g1 = rgb2gray(fim1); im_g2 = rgb2gray(fim2);
+[m1, m2, p1ind,p2ind,cormat]=matchbycorrellation(im_g1,pts1,im_g2,pts2,15);
+
+% for v=m1
+% foo(v(1),v(2)) = 1;
+% end
 
 %calculating the fundamental matrix
 %http://www-misa.cs.ucl.ac.uk/staff/S.Prince/4C75/hartley.pdf 8 point

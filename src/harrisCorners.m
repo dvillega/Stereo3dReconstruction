@@ -14,7 +14,7 @@ end
 
 % Passing the radius of the Gaussian Window - 
 gaussSize = gaussRad*2 + 1;
-
+img = rgb2gray(im2double(img));
 % img = rgb2gray(im2double(imread(path2img)));
 [M,N] = size(img);
 
