@@ -34,11 +34,11 @@ response = @(x) det(x)/trace(x);
 %[R1,rowMax1,colMax1] = harrisCorners(img1, 5, response, 100);
 %[R2,rowMax2,colMax2] = harrisCorners(img2, 5, response, 100);
 
-R1 = SIFT(gray1);
-R2 = SIFT(gray2);
+[R1,pyramid,dpyramid] = SIFT(gray1);
+[R2,pyramid,dpyramid] = SIFT(gray2);
 
-[im1ptsx im1ptsy] = ind2sub(size(img1),find(R1));
-[im2ptsx im2ptsy] = ind2sub(size(img2),find(R2));
+[im1ptsx im1ptsy] = ind2sub(size(img1),find(R1>1));
+[im2ptsx im2ptsy] = ind2sub(size(img2),find(R2>1));
 [fim1,fim2,rOff,cOff] = zeroPadImg(img1,img2);
 pts1 = [im1ptsx+rOff im1ptsy+cOff]'; pts2 = [im2ptsx im2ptsy]';
 

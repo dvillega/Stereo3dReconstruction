@@ -1,4 +1,4 @@
-function diff_pyramid = doG ( image )
+function [pyramid,diff_pyramid] = doG ( image )
     num_octaves = 4;
     num_img_per_octave = 6;
     window_size = 33;
