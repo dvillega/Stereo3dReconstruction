@@ -1,0 +1,13 @@
+User-Agent: *
+Disallow: /local/
+Disallow: /~u0
+Disallow: /~u1
+Disallow: /~u2
+Disallow: /~u3
+Disallow: /~u4
+Disallow: /~u5
+Disallow: /~u6
+Disallow: /~u7
+Disallow: /~u8
+Disallow: /~u9
+Disallow: /cgi-bin/
